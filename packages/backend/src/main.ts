@@ -1,21 +1,18 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import express, { Express, Request, Response } from 'express';
+import dotenv from 'dotenv';
+import { router as flightTrackerRouter } from './routes/flightTracking';
 
-import express from 'express';
-import * as path from 'path';
+dotenv.config();
 
-const app = express();
+const app: Express = express();
+const port = process.env.PORT;
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to backend!' });
+app.get('/', (req: Request, res: Response) => {
+  res.send('Express + TypeScript Server');
 });
 
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+app.use('/flighttracker', flightTrackerRouter);
+
+app.listen(port, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
-server.on('error', console.error);
