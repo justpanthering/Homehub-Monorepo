@@ -6,7 +6,10 @@ describe('GET /flighttracker', () => {
 
     expect(res.status).toBe(200);
     expect(res.data).toEqual(
-      expect.objectContaining({ success: true, data: expect.any(Array) })
+      expect.objectContaining({
+        success: true,
+        data: expect.objectContaining({ aircraft: expect.any(Array) }),
+      })
     );
   });
 });
