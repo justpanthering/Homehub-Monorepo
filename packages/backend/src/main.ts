@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { router as flightTrackerRouter } from './routes/flightTracking';
+import { router as flightTrackerRouter } from './routes/flightTracker';
 
 dotenv.config();
 
@@ -8,7 +8,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+  res.json({ message: 'Hello World' });
 });
 
 app.use('/flighttracker', flightTrackerRouter);
